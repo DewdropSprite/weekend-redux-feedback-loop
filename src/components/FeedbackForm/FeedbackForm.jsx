@@ -2,6 +2,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
+import Header from "../Header/Header"
 
 
 
@@ -30,27 +31,39 @@ const FeedbackForm = ({ text, title, property, nextPath, type }) => {
     }
 
     const inputType = () => {
-        if (type === "number"){
-            return(
-                <input type="number"
-                onChange={(event)=> setFeedbackInput(event.target.value)}/>
-            )}
-        else if(type === "text") {
-            return(
-                <input type="text"
-                onChange={(event)=> setFeedbackInput(event.target.value)}/>
-            )
+        if (type === "number") {
+            return (
+                <select data-testid="input"
+                    onChange={(event) => setFeedbackInput(event.target.value)}
+                    required>
+                    <option value="">Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            ) 
+        }
+        else if (type === "text") {
+            return (
+                <input type="text" data-testid="input"
+                    onChange={(event) => setFeedbackInput(event.target.value)} />
+            )}}
 
-        }}
     return (
         <>
-        <h2>{text}</h2>
-        <form onSubmit={nextButton}>
-            <label>{title}</label>
-            {inputType()}
-            <button type="submit" data-testid="next">Next</button>
-        </form>
-    </>
+            <Header />
+            <h2>{text}</h2>
+            <form onSubmit={nextButton}>
+                <label>{title}</label>
+                <div>
+                    {inputType()}
+                    <button type="submit" data-testid="next">Next</button>
+                </div>
+            </form>
+
+        </>
     )
 }
 

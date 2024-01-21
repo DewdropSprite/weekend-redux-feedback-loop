@@ -5,14 +5,15 @@
 //The review page is where all the inputs from the feedback form will be compiled into 1 list
 //The submit button on this page pushes the  data 
     const ReviewPage = () => {
-        const reduxStore = useSelector(store => store)
+        const reduxStore = useSelector((store) => store)
+        console.log('Redux State:', reduxStore)
         
         // set useHistory and history
         const history = useHistory()
     
         const handleSubmit = () => {
             axios.post('/api/feedback', reduxStore)
-            .then(response => {
+            .then((response) => {
                 history.push('/thankyou')
             })
             .catch(error => {
@@ -25,6 +26,7 @@
         //The submit button populates the database with the new feedback input
         return (
             <div>
+ 
                 <h2>Review Your Feedback</h2>
                 <p>Feelings: {reduxStore.feeling}</p>
                 <p>Understanding: {reduxStore.understanding}</p>
