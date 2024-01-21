@@ -8,7 +8,7 @@
         const reduxStore = useSelector((store) => store)
         console.log('Redux State:', reduxStore)
         
-        // set useHistory and history
+// set useHistory as history
         const history = useHistory()
     
         const handleSubmit = () => {
@@ -21,9 +21,9 @@
             })
         }
     
-        //The return retrieves inormation from store.js and shows the user the inputs they made for
-        //feelings, understanding, support, and comments on their feedback form
-        //The submit button populates the database with the new feedback input
+//The return retrieves inormation from store.js and shows the user the inputs they made for
+//feelings, understanding, support, and comments on their feedback form
+//The submit button populates the database with the new feedback input
         return (
             <div>
  
