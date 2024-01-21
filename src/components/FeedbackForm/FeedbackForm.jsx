@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min"
 
 
 
-const FeedbackForm = ({ text, title, property, nextPath }) => {
+const FeedbackForm = ({ text, title, property, nextPath, type }) => {
 
     const [feedbackInput, setFeedbackInput] = useState('')
 
@@ -27,14 +27,27 @@ const FeedbackForm = ({ text, title, property, nextPath }) => {
             }
         })
         history.push(nextPath)
-
     }
+
+    const inputType = () => {
+        if (type === "number"){
+            return(
+                <input type="number"
+                onChange={(event)=> setFeedbackInput(event.target.value)}/>
+            )}
+        else if(type === "text") {
+            return(
+                <input type="text"
+                onChange={(event)=> setFeedbackInput(event.target.value)}/>
+            )
+
+        }}
     return (
         <>
         <h2>{text}</h2>
         <form onSubmit={nextButton}>
             <label>{title}</label>
-            <input type="text" data-testid="input" onChange={(event)=>setFeedbackInput(event.target.value)}/>
+            {inputType()}
             <button type="submit" data-testid="next">Next</button>
         </form>
     </>

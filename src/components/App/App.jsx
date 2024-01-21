@@ -11,41 +11,63 @@ import ThankYou from '../ThankYou/ThankYou';
 function App() {
 
   return (
-// FeedbackForm is the component and it is used for the feeling, understanding, support, and comments pages. 
-// The only thing changing between the 4 pages are the titles and comments takes in a string where
-// feeling, understanding, and support are dropdowns with the option of choosing 1-5
-<Router>
+    // FeedbackForm is the component and it is used for the feeling, understanding, support, and comments pages. 
+    // The only thing changing between the 4 pages are the titles and comments takes in a string where
+    // feeling, understanding, and support are dropdowns with the option of choosing 1-5
+    <Router>
 
-<Route path='/' exact>
-<FeedbackForm  text="How are you feeling today?"  title="Feeling?" property="feeling" nextPath="/understanding"/><Dropdown />
-</Route>
+      <Route path='/' exact>
+        <FeedbackForm
+          text="How are you feeling today?"
+          title="Feeling?"
+          property="feeling"
+          nextPath="/understanding"
+          input="number"
+        />
+      </Route>
 
-<Route path='/understanding'>
-  <FeedbackForm text="How well are you understanding the content?" title="Understanding?" property="understanding" nextPath="/support/"/><Dropdown />
-</Route>
+      <Route path='/understanding'>
+        <FeedbackForm
+          text="How well are you understanding the content?"
+          title="Understanding?"
+          property="understanding"
+          nextPath="/support/"
+          input="number" />
 
-<Route path='/support'>
-  <FeedbackForm text="How well are you being supported?" title="Supported?" property="supported" nextPath="/comments/"/><Dropdown />
-</Route>
+      </Route>
 
-<Route path='/comments'>
-  <FeedbackForm text="Any comments you want to leave?" title="Comments?" property="comments" nextPath="/review/"/><Dropdown />
-</Route>
+      <Route path='/support'>
+        <FeedbackForm
+          text="How well are you being supported?"
+          title="Supported?"
+          property="supported"
+          nextPath="/comments/"
+          input="number" />
+      </Route>
 
-{/* The review page is where all the inputs from the feedback form will be compiled into 1 list */}
+      <Route path='/comments'>
+        <FeedbackForm
+          text="Any comments you want to leave?"
+          title="Comments?"
+          property="comments"
+          nextPath="/review/"
+          input="text" />
+      </Route>
 
-<Route path='/review' exact>
-  <ReviewPage property="review" nextPath ="/thankyou/" />
-</Route>
+      {/* The review page is where all the inputs from the feedback form will be compiled into 1 list */}
 
-{/* The thank you page is where the user can click the send new feedback button and be brought
+      <Route path='/review' exact>
+        <ReviewPage property="review" nextPath="/thankyou/" />
+      </Route>
+
+      {/* The thank you page is where the user can click the send new feedback button and be brought
      to the first page with the data clearedubmit new feedback */}
 
-<Route Path='/thankyou' exact>
-  <ThankYou nextPath="/"/>
-</Route>
+      <Route Path='/thankyou' exact>
+        <ThankYou nextPath="/" />
+      </Route>
 
-</Router>
+    </Router>
 
 
   );
